@@ -64,7 +64,7 @@ struct InitializeRongCloudCommand: Command {
             ///将设置的用户信息赋值给登录账号
             RCIM.shared().currentUserInfo = currentUserInfo
         }, error: { (error) in
-            print(error)
+            print("连接融云服务器失败， errpr：\(error)")
         }) {
             print("token错误")
         }
