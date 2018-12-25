@@ -189,6 +189,11 @@ typedef NS_ENUM(NSInteger, RCConnectErrorCode) {
     RC_DISCONN_KICK = 31010,
 
     /*!
+     重连过程中当前用户在其它设备上登录
+     */
+    RC_CONN_OTHER_DEVICE_LOGIN = 31023,
+    
+    /*!
      连接被拒绝
 
      @discussion 建立连接的临时错误码，SDK会做好自动重连，开发者无须处理。
@@ -376,7 +381,13 @@ typedef NS_ENUM(NSInteger, RCErrorCode) {
     /*!
      消息中敏感词已经被替换 （接收方可以收到被替换之后的消息）
      */
-    RC_MSG_REPLACED_SENSITIVE_WORD = 21502
+    RC_MSG_REPLACED_SENSITIVE_WORD = 21502,
+    
+    /*!
+     小视频消息超限
+     */
+    RC_SIGHT_MSG_DURATION_LIMIT_EXCEED = 34002,
+
 };
 
 #pragma mark - 连接状态
@@ -595,7 +606,18 @@ typedef NS_ENUM(NSUInteger, RCConversationType) {
     /*!
      推送服务会话
      */
-    ConversationType_PUSHSERVICE = 9
+    ConversationType_PUSHSERVICE = 9,
+    
+    /*!
+     加密会话（仅对部分私有云用户开放，公有云用户不适用）
+     */
+    ConversationType_Encrypted = 11,
+    
+    /*!
+     无效类型
+     */
+    ConversationType_INVALID
+    
 };
 
 #pragma mark RCConversationNotificationStatus - 会话提醒状态
@@ -725,7 +747,12 @@ typedef NS_ENUM(NSUInteger, RCSentStatus) {
     /*!
      发送已取消
      */
-    SentStatus_CANCELED = 70
+    SentStatus_CANCELED = 70,
+    
+    /*!
+     无效类型
+     */
+    SentStatus_INVALID
 };
 
 #pragma mark RCReceivedStatus - 消息的接收状态
@@ -867,6 +894,10 @@ typedef NS_ENUM(NSUInteger, RCSearchType) {
      模糊匹配
      */
     RC_SEARCH_TYPE_FUZZY = 1,
+    /*!
+     无效类型
+     */
+    RCSearchType_INVALID
 };
 
 /*!

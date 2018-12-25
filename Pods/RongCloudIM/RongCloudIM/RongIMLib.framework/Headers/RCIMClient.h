@@ -60,6 +60,20 @@
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object;
 
 @optional
+
+/**
+ 接收消息的回调方法
+ 
+ @param message 当前接收到的消息
+ @param nLeft 还剩余的未接收的消息数，left>=0
+ @param object 消息监听设置的key值
+ @param offline 是否是离线消息
+ @param hasPackage SDK 拉取服务器的消息以包(package)的形式批量拉取，有 package 存在就意味着远端服务器还有消息尚未被 SDK 拉取
+ @discussion 和上面的 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object 功能完全一致，额外把 offline 和 hasPackage 参数暴露，开发者可以根据 nLeft、offline、hasPackage 来决定何时的时机刷新 UI ；建议当 hasPackage=0 并且 nLeft=0 时刷新 UI
+ @warning 如果使用此方法，那么就不能再使用 RCIM 中 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object 的使用，否则会出现重复操作的情形
+ */
+- (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object offline:(BOOL)offline hasPackage:(BOOL)hasPackage;
+
 /*!
  消息被撤回的回调方法
 
@@ -169,10 +183,10 @@
 /*!
  IMLib输入状态的的监听器
 
- @discussion 设置IMLib的输入状态监听器，请参考RCIMClient的setRCTypingStatusDelegate:方法。
+ @discussion 设置IMLib的输入状态监听器，请参考RCIMClient的 setRCTypingStatusDelegate:方法。
 
  @warning
- 如果您使用IMLib，可以设置并实现此Delegate监听消息接收；如果您使用IMKit，请直接设置RCIM中的enableSendComposingStatus，而不要使用此监听器，否则会导致IMKit中无法自动更新UI！
+ 如果您使用IMLib，可以设置并实现此Delegate监听消息输入状态；如果您使用IMKit，请直接设置RCIM中的 enableTypingStatus，而不要使用此监听器，否则会导致IMKit中无法自动更新UI！
  */
 @protocol RCTypingStatusDelegate <NSObject>
 
@@ -426,6 +440,22 @@
  您只需要按照您的需求，使用disconnect:与disconnect以及logout三个接口其中一个即可。
  */
 - (void)logout;
+
+/**
+ 设置断线重连时是否踢出重连设备
+ 
+ @discussion
+ 用户没有开通多设备登录功能的前提下，同一个账号在一台新设备上登录的时候，会把这个账号在之前登录的设备上踢出。
+ 由于 SDK 有断线重连功能，存在下面情况。
+ 用户在 A 设备登录，A 设备网络不稳定，没有连接成功，SDK 启动重连机制。
+ 用户此时又在 B 设备登录，B 设备连接成功。
+ A 设备网络稳定之后，用户在 A 设备连接成功，B 设备被踢出。
+ 这个接口就是为这种情况加的。
+ 设置 enable 为 YES 时，SDK 重连的时候发现此时已有别的设备连接成功，不再强行踢出已有设备，而是踢出重连设备。
+
+ @param enable 是否踢出重连设备
+ */
+- (void)setReconnectKickEnable:(BOOL)enable;
 
 #pragma mark - 连接状态监听
 
@@ -1024,8 +1054,6 @@
  NSString *fromUserId = [notification.userInfo objectForKey:@"fId"];
 
  收到这个消息之后可以更新这个会话中messageTime以前的消息UI为已读（底层数据库消息状态已经改为已读）。
-
- @warning 目前仅支持单聊。
  */
 FOUNDATION_EXPORT NSString *const RCLibDispatchReadReceiptNotification;
 
@@ -1270,7 +1298,7 @@ FOUNDATION_EXPORT NSString *const RCLibDispatchReadReceiptNotification;
  @param targetId            目标会话ID
  @param recordTime          截止的消息发送时间戳，毫秒
  @param count               需要获取的消息数量， 0 < count <= 20
- @param successBlock        获取成功的回调 [messages:获取到的历史消息数组]
+ @param successBlock        获取成功的回调 [messages:获取到的历史消息数组, isRemaining 是否还有剩余消息 YES 表示还有剩余，NO 表示无剩余]
  @param errorBlock          获取失败的回调 [status:获取失败的错误码]
 
  @discussion
@@ -1281,7 +1309,7 @@ FOUNDATION_EXPORT NSString *const RCLibDispatchReadReceiptNotification;
                         targetId:(NSString *)targetId
                       recordTime:(long long)recordTime
                            count:(int)count
-                         success:(void (^)(NSArray *messages))successBlock
+                         success:(void (^)(NSArray *messages,BOOL isRemaining))successBlock
                            error:(void (^)(RCErrorCode status))errorBlock;
 
 /*!
@@ -1340,6 +1368,16 @@ FOUNDATION_EXPORT NSString *const RCLibDispatchReadReceiptNotification;
  @return 通过全局唯一ID获取到的消息实体，当获取失败的时候，会返回nil。
  */
 - (RCMessage *)getMessageByUId:(NSString *)messageUId;
+
+/**
+ * 获取会话里第一条未读消息。
+ *
+ * @param conversationType 会话类型
+ * @param targetId   会话 Id
+ * @return 第一条未读消息的实体。
+ */
+- (RCMessage *)getFirstUnreadMessage:(RCConversationType)conversationType
+                            targetId:(NSString *)targetId;
 
 /*!
  删除消息
@@ -1450,6 +1488,8 @@ FOUNDATION_EXPORT NSString *const RCLibDispatchReadReceiptNotification;
 
  @param conversationTypeList 会话类型的数组(需要将RCConversationType转为NSNumber构建Array)
  @return                        是否删除成功
+ 
+ @discussion 此方法会从本地存储中删除该会话，同时删除会话中的消息。
  */
 - (BOOL)clearConversations:(NSArray *)conversationTypeList;
 

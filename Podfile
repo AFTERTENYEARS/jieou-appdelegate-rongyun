@@ -21,6 +21,6 @@ target 'practice-rongyun' do
 
     	pod 'SkeletonView'
 	#融云
-	pod 'RongCloudIM/IMLib', '~> 2.8.3'
-    	pod 'RongCloudIM/IMKit', '~> 2.8.3' 
+        pod 'RongCloudIM/IMLib'
+    	pod 'RongCloudIM/IMKit'
 end

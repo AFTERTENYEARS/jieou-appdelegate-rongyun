@@ -16,6 +16,7 @@
  开始语音播放的Notification
  */
 UIKIT_EXTERN NSString *const kNotificationPlayVoice;
+
 /*!
  语音消息播放停止的Notification
  */
@@ -50,5 +51,10 @@ UIKIT_EXTERN NSString *const kNotificationStopVoicePlayer;
  播放语音
  */
 - (void)playVoice;
+
+/*!
+ 停止播放语音
+ */
+- (void)stopPlayingVoice;
 
 @end
