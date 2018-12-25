@@ -1,0 +1,6 @@
+framework module Pods_practice_rongyun {
+  umbrella header "Pods-practice-rongyun-umbrella.h"
+
+  export *
+  module * { export * }
+}
