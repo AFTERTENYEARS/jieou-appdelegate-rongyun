@@ -54,7 +54,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A7386B621D0BF4D00B4294E /* 123 */ = {
+		0A7386B621D0BF4D00B4294E /* major */ = {
 			isa = PBXGroup;
 			children = (
 				0A7386BB21D0C02800B4294E /* EWChatListTableViewCell.swift */,
@@ -65,13 +65,13 @@
 				0A7386B721D0BF5800B4294E /* EWUserDefaults.swift */,
 				0ACE153D21D08DC000AE634A /* ViewController.swift */,
 			);
-			path = 123;
+			path = major;
 			sourceTree = "<group>";
 		};
 		0ACE152F21D08DC000AE634A = {
 			isa = PBXGroup;
 			children = (
-				0A7386B621D0BF4D00B4294E /* 123 */,
+				0A7386B621D0BF4D00B4294E /* major */,
 				0ACE153A21D08DC000AE634A /* practice-rongyun */,
 				0ACE153921D08DC000AE634A /* Products */,
 				50A2A6FDCD74F3DC74BDE7E5 /* Pods */,
