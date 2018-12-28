@@ -13,16 +13,17 @@
 
 + (void)load {
     [super load];
-    //原本的willAppear方法
-    Method willAppearOriginal = class_getInstanceMethod([self class], @selector(viewWillAppear:));
-    //我们的willAppear方法
-    Method willAppearNew = class_getInstanceMethod([self class], @selector(swizzlingViewWillAppear:));
-    //交换
-    if (!class_addMethod([self class], @selector(viewWillAppear:), method_getImplementation(willAppearNew), method_getTypeEncoding(willAppearNew))) {
-        method_exchangeImplementations(willAppearOriginal, willAppearNew);
-    }
-    
-
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        //原本的willAppear方法
+        Method willAppearOriginal = class_getInstanceMethod([self class], @selector(viewWillAppear:));
+        //我们的willAppear方法
+        Method willAppearNew = class_getInstanceMethod([self class], @selector(swizzlingViewWillAppear:));
+        //交换
+        if (!class_addMethod([self class], @selector(viewWillAppear:), method_getImplementation(willAppearNew), method_getTypeEncoding(willAppearNew))) {
+            method_exchangeImplementations(willAppearOriginal, willAppearNew);
+        }
+    });
 }
 
 - (void)swizzlingViewWillAppear:(BOOL)animated {

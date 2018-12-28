@@ -15,12 +15,12 @@ target 'practice-rongyun' do
     	pod 'HandyJSON', '~> 4.2.0'
     	pod 'SwiftyJSON'
     	pod 'SwiftMessages'
-    	# 分页
+    	#分页
     	pod 'SwipeMenuViewController'
     	pod 'MJRefresh'
 
     	pod 'SkeletonView'
-	#融云
+        #融云
         pod 'RongCloudIM/IMLib'
     	pod 'RongCloudIM/IMKit'
 end
