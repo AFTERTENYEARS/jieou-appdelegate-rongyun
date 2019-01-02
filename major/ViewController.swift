@@ -13,12 +13,8 @@ let personArray = ["李千乘","韩冰寒","林惊羽","陈浩天","王梓晨"]
 ///这里使用的是自己实现的通讯录列表,根据需求可以选择使用融云自带的通讯列表页面,新建自己的viewController继承自RCConversationListViewController
 class ViewController: UIViewController {
     
-    let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.addSubview(tableView)
-        
+    lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         //        tableView.separatorStyle = .none
         tableView.isOpaque = false
         tableView.dataSource = self
@@ -31,6 +27,15 @@ class ViewController: UIViewController {
         tableView.showsHorizontalScrollIndicator=true;
         tableView.showsVerticalScrollIndicator=false;
         tableView.register(EWChatListTableViewCell.self, forCellReuseIdentifier: EWChatListTableViewCell.identifier)
+        
+        return tableView
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.progenyViews(views: [
+            tableView
+            ]).finish()
         
         ///添加通知,获取消息时刷新TableView上的badge
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name:   Notification.Name(rawValue: "onRCIMReceive"), object: nil)

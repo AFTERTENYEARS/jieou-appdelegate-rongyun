@@ -185,4 +185,13 @@ extension UIView {
             self.center = center
         }
     }
+    func progenyViews(views: Array<UIView>) -> UIView{
+        for view in views {
+            self.addSubview(view)
+        }
+        return self
+    }
+    func finish() -> Void {
+        
+    }
 }
