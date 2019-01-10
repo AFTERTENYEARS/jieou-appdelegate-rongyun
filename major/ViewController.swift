@@ -5,7 +5,6 @@
 //  Created by 李书康 on 2018/12/24.
 //  Copyright © 2018 com.li.www. All rights reserved.
 //
-
 import UIKit
 ///示例数据,正常应该从后台获取.
 let personArray = ["李千乘","韩冰寒","林惊羽","陈浩天","王梓晨"]
@@ -52,6 +51,7 @@ class ViewController: UIViewController {
     
 }
 
+
 extension ViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
@@ -75,7 +75,7 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
         tableView.cell_cancel_select()
         /// targetID就是目标用户的targetID,是后台传给融云的,我们也是从后台获取
         let chat = EWPersonChatViewController(conversationType: .ConversationType_PRIVATE, targetId: "\(indexPath.row)")
-        chat?.title = personArray[indexPath.row] 
+        chat?.title = personArray[indexPath.row]
         self.navigationController?.pushViewController(chat!, animated: true)
         var dic = getMessageDic(PERSONMESSAGEKEY)
         dic.removeValue(forKey: "\(indexPath.row)")

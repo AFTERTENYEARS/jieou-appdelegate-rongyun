@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A036FBE21D2035500EFF8F5 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A036FBD21D2035500EFF8F5 /* Command.swift */; };
+		0A20737021E7291C00D88B7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A20736F21E7291C00D88B7F /* ViewController.swift */; };
 		0A7386B821D0BF5800B4294E /* EWUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7386B721D0BF5800B4294E /* EWUserDefaults.swift */; };
 		0A7386BE21D0C02800B4294E /* UIViewController+Swizzling_h.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7386B921D0C02800B4294E /* UIViewController+Swizzling_h.m */; };
 		0A7386BF21D0C02800B4294E /* EWRCIMDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7386BA21D0C02800B4294E /* EWRCIMDelegate.swift */; };
@@ -15,7 +16,6 @@
 		0A7386C121D0C02800B4294E /* EWPersonChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7386BC21D0C02800B4294E /* EWPersonChatViewController.swift */; };
 		0A7386C321D0C62600B4294E /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7386C221D0C62600B4294E /* Define.swift */; };
 		0ACE153C21D08DC000AE634A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE153B21D08DC000AE634A /* AppDelegate.swift */; };
-		0ACE153E21D08DC000AE634A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE153D21D08DC000AE634A /* ViewController.swift */; };
 		0ACE154321D08DC200AE634A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ACE154221D08DC200AE634A /* Assets.xcassets */; };
 		0ACE154621D08DC200AE634A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ACE154421D08DC200AE634A /* LaunchScreen.storyboard */; };
 		74438DA946EB70F9DA082223 /* Pods_practice_rongyun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED6356FF814F46C38BF989BC /* Pods_practice_rongyun.framework */; };
@@ -23,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		0A036FBD21D2035500EFF8F5 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		0A20736F21E7291C00D88B7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0A7386B521D0913F00B4294E /* practice-rongyun-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "practice-rongyun-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A7386B721D0BF5800B4294E /* EWUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EWUserDefaults.swift; sourceTree = "<group>"; };
 		0A7386B921D0C02800B4294E /* UIViewController+Swizzling_h.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Swizzling_h.m"; sourceTree = "<group>"; };
@@ -33,7 +34,6 @@
 		0A7386C221D0C62600B4294E /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		0ACE153821D08DC000AE634A /* practice-rongyun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "practice-rongyun.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ACE153B21D08DC000AE634A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0ACE153D21D08DC000AE634A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0ACE154221D08DC200AE634A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0ACE154521D08DC200AE634A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0ACE154721D08DC200AE634A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 				0A7386BD21D0C02800B4294E /* UIViewController+Swizzling_h.h */,
 				0A7386B921D0C02800B4294E /* UIViewController+Swizzling_h.m */,
 				0A7386B721D0BF5800B4294E /* EWUserDefaults.swift */,
-				0ACE153D21D08DC000AE634A /* ViewController.swift */,
+				0A20736F21E7291C00D88B7F /* ViewController.swift */,
 			);
 			path = major;
 			sourceTree = "<group>";
@@ -303,11 +303,11 @@
 				0A7386B821D0BF5800B4294E /* EWUserDefaults.swift in Sources */,
 				0A7386BE21D0C02800B4294E /* UIViewController+Swizzling_h.m in Sources */,
 				0A7386C321D0C62600B4294E /* Define.swift in Sources */,
+				0A20737021E7291C00D88B7F /* ViewController.swift in Sources */,
 				0A7386C121D0C02800B4294E /* EWPersonChatViewController.swift in Sources */,
 				0A7386BF21D0C02800B4294E /* EWRCIMDelegate.swift in Sources */,
 				0A036FBE21D2035500EFF8F5 /* Command.swift in Sources */,
 				0A7386C021D0C02800B4294E /* EWChatListTableViewCell.swift in Sources */,
-				0ACE153E21D08DC000AE634A /* ViewController.swift in Sources */,
 				0ACE153C21D08DC000AE634A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
